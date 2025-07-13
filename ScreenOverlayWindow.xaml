@@ -1,0 +1,22 @@
+<Window x:Class="Huey.ScreenOverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="#66000000"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        IsHitTestVisible="True">
+    <Grid>
+        <Image x:Name="ScreenshotImage" Stretch="Fill"/>
+        <!-- Subtle overlay signal: semi-transparent border and label -->
+        <Border BorderBrush="#FF00BFFF" BorderThickness="3" CornerRadius="0"/>
+        <TextBlock Text="Pick a colour (Esc to cancel)" 
+                   Foreground="#FF00BFFF" FontSize="24" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                   Margin="0,40,0,0" Opacity="0.8"/>
+        <Canvas x:Name="CrosshairCanvas" IsHitTestVisible="False"/>
+    </Grid>
+</Window> 
