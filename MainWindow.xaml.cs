@@ -7,8 +7,8 @@ using System.Windows.Media;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using Point = System.Drawing.Point;
-using DrawingColor = System.Drawing.Color;
-using MediaColor = System.Windows.Media.Color;
+using DrawingColour = System.Drawing.Color;
+using MediaColour = System.Windows.Media.Color;
 using System.Diagnostics;
 using System.Windows.Media.Imaging;
 using System.Windows.Forms;
@@ -20,7 +20,7 @@ namespace Huey
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DrawingColor? _selectedColor;
+        private DrawingColour? _selectedColour;
         private IntPtr _mouseHookId = IntPtr.Zero;
         private Win32.LowLevelMouseProc _mouseProc;
         private MagnifierWindow? _magnifierWindow;
@@ -112,7 +112,7 @@ namespace Huey
                 using (Graphics graphics = Graphics.FromImage(bitmap))
                 {
                     graphics.CopyFromScreen((int)cursorPosition.X, (int)cursorPosition.Y, 0, 0, new System.Drawing.Size(1, 1));
-                    DrawingColor pixelColour = bitmap.GetPixel(0, 0);
+                    DrawingColour pixelColour = bitmap.GetPixel(0, 0);
                     Dispatcher.Invoke(() => UpdateColourDisplay(pixelColour));
                 }
 
@@ -136,9 +136,9 @@ namespace Huey
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedColor.HasValue)
+            if (_selectedColour.HasValue)
             {
-                string hexValue = $"#{_selectedColor.Value.R:X2}{_selectedColor.Value.G:X2}{_selectedColor.Value.B:X2}";
+                string hexValue = $"#{_selectedColour.Value.R:X2}{_selectedColour.Value.G:X2}{_selectedColour.Value.B:X2}";
                 System.Windows.Clipboard.SetText(hexValue);
                 
                 // Show a brief notification
@@ -164,7 +164,7 @@ namespace Huey
                 using (Graphics graphics = Graphics.FromImage(bitmap))
                 {
                     graphics.CopyFromScreen((int)cursorPosition.X, (int)cursorPosition.Y, 0, 0, new System.Drawing.Size(1, 1));
-                    DrawingColor pixelColour = bitmap.GetPixel(0, 0);
+                    DrawingColour pixelColour = bitmap.GetPixel(0, 0);
                     
                     // Update the UI with the selected colour
                     UpdateColourDisplay(pixelColour);
@@ -190,12 +190,12 @@ namespace Huey
             return new Point(point.X, point.Y);
         }
 
-        private void UpdateColourDisplay(DrawingColor colour)
+        private void UpdateColourDisplay(DrawingColour colour)
         {
-            _selectedColor = colour;
+            _selectedColour = colour;
             
             // Update colour preview
-            ColorPreview.Background = new SolidColorBrush(MediaColor.FromRgb(colour.R, colour.G, colour.B));
+            ColourPreview.Background = new SolidColorBrush(MediaColour.FromRgb(colour.R, colour.G, colour.B));
             
             // Update RGB value
             RgbValue.Text = $"{colour.R}, {colour.G}, {colour.B}";
@@ -204,7 +204,7 @@ namespace Huey
             HexValue.Text = $"#{colour.R:X2}{colour.G:X2}{colour.B:X2}";
             
             // Update preview text
-            var textBlock = ColorPreview.Child as TextBlock;
+            var textBlock = ColourPreview.Child as TextBlock;
             if (textBlock != null)
             {
                 textBlock.Text = "";

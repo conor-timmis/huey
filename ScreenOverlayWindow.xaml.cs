@@ -46,7 +46,7 @@ namespace Huey
             CrosshairCanvas.Children.Clear();
             double length = 30;
             double thickness = 2;
-            var color = System.Windows.Media.Brushes.DeepSkyBlue;
+            var colour = System.Windows.Media.Brushes.DeepSkyBlue;
             // Horizontal line
             CrosshairCanvas.Children.Add(new System.Windows.Shapes.Line
             {
@@ -54,7 +54,7 @@ namespace Huey
                 Y1 = pos.Y,
                 X2 = pos.X + length / 2,
                 Y2 = pos.Y,
-                Stroke = color,
+                Stroke = colour,
                 StrokeThickness = thickness
             });
             // Vertical line
@@ -64,7 +64,7 @@ namespace Huey
                 Y1 = pos.Y - length / 2,
                 X2 = pos.X,
                 Y2 = pos.Y + length / 2,
-                Stroke = color,
+                Stroke = colour,
                 StrokeThickness = thickness
             });
         }
@@ -93,7 +93,7 @@ namespace Huey
             dc.DrawLine(pen, new System.Windows.Point(pos.X, pos.Y - 15), new System.Windows.Point(pos.X, pos.Y + 15));
         }
 
-        public System.Drawing.Color GetPixelColour(System.Windows.Point pos)
+        public System.Drawing.Colour GetPixelColour(System.Windows.Point pos)
         {
             int x = (int)(pos.X * _screenshot.Width / this.ActualWidth);
             int y = (int)(pos.Y * _screenshot.Height / this.ActualHeight);

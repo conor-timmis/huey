@@ -1,7 +1,7 @@
 <Window x:Class="Huey.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Huey - Color Picker" Height="400" Width="600"
+        Title="Huey - Colour Picker" Height="400" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize">
     <Grid>
@@ -14,7 +14,7 @@
         <!-- Header -->
         <StackPanel Grid.Row="0" Margin="20,20,20,10">
             <TextBlock Text="Huey" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock Text="Color Picker" FontSize="14" Foreground="Gray" HorizontalAlignment="Center"/>
+            <TextBlock Text="Colour Picker" FontSize="14" Foreground="Gray" HorizontalAlignment="Center"/>
         </StackPanel>
         
         <!-- Main Content -->
@@ -25,13 +25,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <!-- Color Preview -->
+            <!-- Colour Preview -->
             <Border Grid.Column="0" 
                     Background="LightGray" 
                     CornerRadius="8" 
                     Margin="0,0,10,0"
-                    x:Name="ColorPreview">
-                <TextBlock Text="No color selected" 
+                    x:Name="ColourPreview">
+                <TextBlock Text="No colour selected" 
                            HorizontalAlignment="Center" 
                            VerticalAlignment="Center"
                            Foreground="Gray"/>
