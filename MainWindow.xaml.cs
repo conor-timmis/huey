@@ -24,9 +24,9 @@ namespace Huey
             InitializeComponent();
         }
 
-        private void PickColorButton_Click(object sender, RoutedEventArgs e)
+        private void PickColourButton_Click(object sender, RoutedEventArgs e)
         {
-            PickColorFromScreen();
+            PickColourFromScreen();
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace Huey
             }
         }
 
-        private void PickColorFromScreen()
+        private void PickColourFromScreen()
         {
             // Minimize the window
             this.WindowState = WindowState.Minimized;
@@ -54,20 +54,20 @@ namespace Huey
                 // Get the cursor position
                 Point cursorPosition = GetCursorPosition();
                 
-                // Capture the screen and get the color at cursor position
+                // Capture the screen and get the colour at cursor position
                 using (Bitmap bitmap = new Bitmap(1, 1))
                 using (Graphics graphics = Graphics.FromImage(bitmap))
                 {
                     graphics.CopyFromScreen((int)cursorPosition.X, (int)cursorPosition.Y, 0, 0, new System.Drawing.Size(1, 1));
-                    DrawingColor pixelColor = bitmap.GetPixel(0, 0);
+                    DrawingColor pixelColour = bitmap.GetPixel(0, 0);
                     
-                    // Update the UI with the selected color
-                    UpdateColorDisplay(pixelColor);
+                    // Update the UI with the selected colour
+                    UpdateColourDisplay(pixelColour);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error picking color: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error picking colour: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
@@ -85,18 +85,18 @@ namespace Huey
             return new Point(point.X, point.Y);
         }
 
-        private void UpdateColorDisplay(DrawingColor color)
+        private void UpdateColourDisplay(DrawingColor colour)
         {
-            _selectedColor = color;
+            _selectedColor = colour;
             
-            // Update color preview
-            ColorPreview.Background = new SolidColorBrush(MediaColor.FromRgb(color.R, color.G, color.B));
+            // Update colour preview
+            ColorPreview.Background = new SolidColorBrush(MediaColor.FromRgb(colour.R, colour.G, colour.B));
             
             // Update RGB value
-            RgbValue.Text = $"{color.R}, {color.G}, {color.B}";
+            RgbValue.Text = $"{colour.R}, {colour.G}, {colour.B}";
             
             // Update HEX value
-            HexValue.Text = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+            HexValue.Text = $"#{colour.R:X2}{colour.G:X2}{colour.B:X2}";
             
             // Update preview text
             var textBlock = ColorPreview.Child as TextBlock;
