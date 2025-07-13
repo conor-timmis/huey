@@ -5,8 +5,9 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <AssemblyTitle>Huey - Color Picker</AssemblyTitle>
-    <AssemblyDescription>A simple color picker application for Windows</AssemblyDescription>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyTitle>Huey - Colour Picker</AssemblyTitle>
+    <AssemblyDescription>A simple colour picker application for Windows</AssemblyDescription>
     <AssemblyCompany>Huey</AssemblyCompany>
     <AssemblyProduct>Huey</AssemblyProduct>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
