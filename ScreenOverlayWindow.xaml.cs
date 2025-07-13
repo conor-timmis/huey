@@ -93,7 +93,7 @@ namespace Huey
             dc.DrawLine(pen, new System.Windows.Point(pos.X, pos.Y - 15), new System.Windows.Point(pos.X, pos.Y + 15));
         }
 
-        public System.Drawing.Colour GetPixelColour(System.Windows.Point pos)
+        public System.Drawing.Color GetPixelColour(System.Windows.Point pos)
         {
             int x = (int)(pos.X * _screenshot.Width / this.ActualWidth);
             int y = (int)(pos.Y * _screenshot.Height / this.ActualHeight);
