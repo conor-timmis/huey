@@ -9,14 +9,35 @@
         ResizeMode="NoResize"
         WindowState="Maximized"
         IsHitTestVisible="True">
-    <Grid>
-        <Image x:Name="ScreenshotImage" Stretch="Fill"/>
-        <!-- Subtle overlay signal: semi-transparent border and label -->
-        <Border BorderBrush="#FF00BFFF" BorderThickness="3" CornerRadius="0"/>
-        <TextBlock Text="Pick a colour (Esc to cancel)" 
-                   Foreground="#FF00BFFF" FontSize="24" FontWeight="Bold"
-                   HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Margin="0,40,0,0" Opacity="0.8"/>
-        <Canvas x:Name="CrosshairCanvas" IsHitTestVisible="False"/>
-    </Grid>
+    <Canvas>
+        <Grid>
+            <Image x:Name="ScreenshotImage" Stretch="Fill"/>
+            <!-- Subtle overlay signal: semi-transparent border and label -->
+            <Border BorderBrush="#FF00BFFF" BorderThickness="3" CornerRadius="0"/>
+            <TextBlock Text="Pick a colour (Esc to cancel)" 
+                       Foreground="#FF00BFFF" FontSize="24" FontWeight="Bold"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"
+                       Margin="0,40,0,0" Opacity="0.8"/>
+            <Canvas x:Name="CrosshairCanvas" IsHitTestVisible="False"/>
+        </Grid>
+        <!-- Magnifier absolutely positioned -->
+        <Border x:Name="MagnifierBorder" 
+                Width="70" Height="70"
+                CornerRadius="8" 
+                BorderBrush="Gray" 
+                BorderThickness="2" 
+                Background="#CCFFFFFF"
+                Visibility="Collapsed"
+                IsHitTestVisible="False">
+            <Grid>
+                <Image x:Name="MagnifierImage" Stretch="Fill" Width="68" Height="68"/>
+                <Canvas IsHitTestVisible="False" Width="68" Height="68">
+                    <Rectangle Width="8" Height="8"
+                               Stroke="Red" StrokeThickness="2"
+                               Fill="Transparent"
+                               Canvas.Left="30" Canvas.Top="30"/>
+                </Canvas>
+            </Grid>
+        </Border>
+    </Canvas>
 </Window> 
