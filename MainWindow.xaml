@@ -45,11 +45,14 @@
                 <TextBlock Text="HEX:" FontWeight="Bold" Margin="0,0,0,5"/>
                 <TextBlock x:Name="HexValue" Text="#000000" Margin="0,0,0,10"/>
                 
-                <Button x:Name="CopyButton" 
-                        Content="Copy HEX" 
-                        Padding="10,5" 
-                        Margin="0,10,0,0"
-                        Click="CopyButton_Click"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <Button x:Name="CopyHexButton" Content="Copy HEX" Width="80" Height="28" Margin="2" Click="CopyHexButton_Click"/>
+                        <Button x:Name="CopyRgbButton" Content="Copy RGB" Width="80" Height="28" Margin="2" Click="CopyRgbButton_Click"/>
+                    </StackPanel>
+                    <TextBlock x:Name="CopyNotification" Text="Copied ✔️" Foreground="Green" FontWeight="Bold" FontSize="14"
+                               HorizontalAlignment="Center" Margin="0,4,0,0" Visibility="Collapsed"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         

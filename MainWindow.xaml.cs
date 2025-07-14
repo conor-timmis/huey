@@ -12,6 +12,7 @@ using MediaColour = System.Windows.Media.Color;
 using System.Diagnostics;
 using System.Windows.Media.Imaging;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace Huey
 {
@@ -25,6 +26,7 @@ namespace Huey
         private Win32.LowLevelMouseProc _mouseProc;
         private MagnifierWindow? _magnifierWindow;
         private bool _isPickingColour = false;
+        private DispatcherTimer? _copyNotificationTimer;
 
         public MainWindow()
         {
@@ -144,6 +146,43 @@ namespace Huey
                 // Show a brief notification
                 System.Windows.MessageBox.Show($"Copied {hexValue} to clipboard!", "Copied", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void CopyHexButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedColour.HasValue)
+            {
+                string hexValue = $"#{_selectedColour.Value.R:X2}{_selectedColour.Value.G:X2}{_selectedColour.Value.B:X2}";
+                System.Windows.Clipboard.SetText(hexValue);
+                ShowCopyNotification();
+            }
+        }
+
+        private void CopyRgbButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedColour.HasValue)
+            {
+                string rgbValue = $"{_selectedColour.Value.R}, {_selectedColour.Value.G}, {_selectedColour.Value.B}";
+                System.Windows.Clipboard.SetText(rgbValue);
+                ShowCopyNotification();
+            }
+        }
+
+        private void ShowCopyNotification()
+        {
+            CopyNotification.Visibility = Visibility.Visible;
+            _copyNotificationTimer?.Stop();
+            if (_copyNotificationTimer == null)
+            {
+                _copyNotificationTimer = new DispatcherTimer();
+                _copyNotificationTimer.Interval = TimeSpan.FromSeconds(1.2);
+                _copyNotificationTimer.Tick += (s, e) =>
+                {
+                    CopyNotification.Visibility = Visibility.Collapsed;
+                    _copyNotificationTimer.Stop();
+                };
+            }
+            _copyNotificationTimer.Start();
         }
 
         private void PickColourFromScreen()
